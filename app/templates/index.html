@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load custom_tag %}
+{% block content %}
+<div class="container-fluid">
+   <h1> from index.html </h1>
+   <br>
+   <div>
+      <form action="" id='filterForm' method="GET">
+         <div class="row justify-content-center">
+           
+            <div class="form-group col-4">
+               <label for="selectState">Select State</label>
+               <select class="form-control" name='state' id="stateSelect">
+                 <option value="">Select State</option>
+                 {% for state in states %}
+                 <option {% is_option_selected selected_state_id state.pk %}                            
+                 value="{{state.pk}}">{{state.name}}</option>
+                 {% endfor %}
+                </select>
+             </div>
+             <div class="form-group col-4">
+             
+               <label for="selectCity">Select City</label>
+               <select class="form-control" name='city' id="citySelect">
+                 <option value="">Select City</option>
+                 {% for city in cities %}
+                 <option {% is_option_selected selected_city_id city.pk %}
+                 value="{{city.pk}}">{{city.name}}</option>
+                 {% endfor %}
+                </select>
+             </div> 
+                       
+            <div class="form-group col-4">
+               <label for="selectFacility">Select Facility</label>
+               <select class="form-control" name='facility' id="facilitySelect">
+                  <option value="">Select Facility</option>
+                  {% for facility in facilities %}
+                  <option  {% is_option_selected selected_facility_id facility.pk %}
+                  value="{{facility.pk}}">{{facility.title}}</option>
+                  {% endfor %}
+                  </select>
+               </div>       
+
+         </div>
+         <div>
+            <a href="/" class="btn btn-primary">Reset</a>
+         </div>
+      </form>         
+   </div>     
+   <hr>  
+
+   <div>
+      <table class="table text-center">
+         <thead>
+            <tr>
+               <th rowspan="2" style="vertical-align:middle; text-align:center">Hospital</th>
+               {% for facility in facilities %}
+               <th colspan="2" class="text-center border border-dark">{{facility.title}} </th>
+               {% endfor %}
+            </tr>
+            
+            <tr class="text-center">
+               {% for facility in facilities %} 
+               <th class="border border-dark" scope="col">Total</th>
+               <th class="border border-dark" scope="col">Available</th>
+               {% endfor %}
+            </tr>
+
+         </thead>
+         <tbody>
+            {% for hospital in hospitals %} 
+            <tr>
+               <td><a href="/hospital/{{hospital.id}}">{{hospital.name}}</a></td>
+               {% get_availabilities hospital as availabilities%}
+               {% for avl in availabilities %}
+               <td>{{avl.total}}</td>
+               <td>{{avl.available}}</td>
+               {% endfor %}
+            </tr>
+            {% endfor %}
+         </tbody>
+      </table> 
+   </div>
+   
+</div>  
+   
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load custom_tag %}
+{% block content %}
+
+<div class="container mt-4">
+   <h1> from hospitalview.html </h1>
+
+   <table class="table table-striped tabled-bordered">
+        <h4 class="border rounded p4">{{hospital.name}}</h4>
+        <hr>
+         <tr>
+            <td>Address</td>
+            <td>{{hospital.address }}</td>   
+         </tr>
+         <tr>
+            <td>Phone</td>
+           <td>{{hospital.phone }}</td>   
+         </tr>
+         <tr>         
+           <td>City</td>
+           <td>{{hospital.city }}</td>
+         </tr>
+   </table>
+</div>  
+  
+{% endblock %}
+ <!---  
+   <table class="table">
+      <h3>{{error_message}}</h3>
+      <h4>{{hospital}}</h4>
+      <thead>
+         <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>City</th>
+         </tr>
+      </thead>
+      <tbody>
+         
+     
+      {% for x in hospital %}
+         <tr>
+           <td>{{ x.name }}</td>
+           <td>{{ x.address }}</td>
+           <td>{{ x.phone }}</td>
+           <td>{{ x.city }}</td>
+         </tr>
+      {% endfor %}   
+          
+      </tbody>
+   </table>
+    --->    
+   
+  

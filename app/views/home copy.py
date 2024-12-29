@@ -1,0 +1,45 @@
+from django.shortcuts import render
+from app.models.state import State
+from app.models.city import City
+from app.models.hospital import Hospital
+from app.models.facility import Facility
+from app.models.availability import Availability
+
+def home(request): 
+    states=State.objects.all()
+    cities=City.objects.all()
+    hospitals=Hospital.objects.all()
+    facilities = Facility.objects.all().order_by('pk')
+   
+    selected_state_id=request.GET.get('state')  
+    if selected_state_id:
+        cities=cities.filter(state=selected_state_id)
+    else:
+        cities=City.objects.all()  
+    
+    selected_city_id=request.GET.get('city') 
+    if selected_city_id:        
+        hospitals=hospitals.filter(city=City(pk=selected_city_id))
+    
+    selected_facility_id=request.GET.get('facility')
+    if selected_facility_id:
+        availabilities=Availability.objects.filter(facility=Facility
+        (pk=selected_facility_id), available__gt=0)
+        print('ln 28 availabilities: ', availabilities)
+        hospitals=[]
+        for avl in availabilities:
+            hospitals.append(avl.hospital)
+        print('ln 32 hospitals: ', hospitals)
+
+
+    context={       
+        'cities':cities,
+        'states':states,
+        'hospitals':hospitals,
+        'facilities':facilities,
+        'selected_state_id':selected_state_id,
+        'selected_city_id':selected_city_id,
+        'selected_facility_id':selected_facility_id
+    }
+   
+    return render(request,'index.html', context)
