@@ -48,4 +48,4 @@ def facility(request):
         'selected_facility_id':selected_facility_id
     }
    
-    return render(request,'facility.html', context)
+    return render(request,'app/facility.html', context)

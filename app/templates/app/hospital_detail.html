@@ -1,30 +1,10 @@
-{% extends 'base.html' %}
+{% extends './base.html' %}
 {% load custom_tag %}
 {% block content %}
 
-<div class="container mt-4">
+<div class="container-fluid">
    <h1> from hospitalview.html </h1>
 
-   <table class="table table-striped tabled-bordered">
-        <h4 class="border rounded p4">{{hospital.name}}</h4>
-        <hr>
-         <tr>
-            <td>Address</td>
-            <td>{{hospital.address }}</td>   
-         </tr>
-         <tr>
-            <td>Phone</td>
-           <td>{{hospital.phone }}</td>   
-         </tr>
-         <tr>         
-           <td>City</td>
-           <td>{{hospital.city }}</td>
-         </tr>
-   </table>
-</div>  
-  
-{% endblock %}
- <!---  
    <table class="table">
       <h3>{{error_message}}</h3>
       <h4>{{hospital}}</h4>
@@ -37,19 +17,19 @@
          </tr>
       </thead>
       <tbody>
-         
-     
-      {% for x in hospital %}
+         {% for x in hospital %}
          <tr>
            <td>{{ x.name }}</td>
            <td>{{ x.address }}</td>
            <td>{{ x.phone }}</td>
            <td>{{ x.city }}</td>
          </tr>
-      {% endfor %}   
-          
+          {% endfor %}            
       </tbody>
    </table>
-    --->    
-   
+   <h3></h3>
   
+
+</div>  
+  
+{% endblock %}

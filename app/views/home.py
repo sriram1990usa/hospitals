@@ -48,4 +48,4 @@ def home(request):
         'selected_facility_id':selected_facility_id
     }
    
-    return render(request,'index.html', context)
+    return render(request,'app/index.html', context)

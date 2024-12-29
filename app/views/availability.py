@@ -18,4 +18,4 @@ def availability(request):
         'availabilities':availabilities
     }
    
-    return render(request,'facility.html', context)
+    return render(request,'app/facility.html', context)
